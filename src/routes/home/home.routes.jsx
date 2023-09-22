@@ -1,14 +1,12 @@
 import CategoryMenu from "../../components/category-menu/category-menu.component";
-import { Outlet } from "react-router-dom";
 import React from "react";
 
-const Home = () => {
+const HomeRoute = () => {
   return (
     <div>
-      <Outlet />
       <CategoryMenu />
     </div>
   );
 };
 
-export default Home;
+export default HomeRoute;

@@ -27,10 +27,6 @@ const SignInForm = () => {
   const { email, password } = formFields;
   const [error, setError] = useState("");
 
-  const { setCurrentUser } = useContext(UserContext);
-
-  console.log(formFields);
-
   useEffect(() => {
     const setUserDocumentFromAuth = async () => {
       const response = await getRedirectResult(auth);
@@ -41,10 +37,8 @@ const SignInForm = () => {
     setUserDocumentFromAuth();
   }, []);
 
-  const logGoogleUser = async () => {
-    const { user } = await signInWithGooglePopup();
-    createUserDocumentFromAuth(user);
-    setCurrentUser(user);
+  const signInWithGoogle = async () => {
+    await signInWithGooglePopup();
   };
 
   const handleChange = (e) => {
@@ -63,7 +57,6 @@ const SignInForm = () => {
         email,
         password
       );
-      setCurrentUser(user);
       resetFormFields();
     } catch (error) {
       let err = error.code.slice(5, error.code.length);
@@ -105,7 +98,7 @@ const SignInForm = () => {
         {error && <h2 className="error-message">{error}</h2>}
         <div className="buttons-container">
           <Button type="submit">Sign In</Button>
-          <Button type="button" buttonType="google" onClick={logGoogleUser}>
+          <Button type="button" buttonType="google" onClick={signInWithGoogle}>
             Google Sign In
           </Button>
         </div>

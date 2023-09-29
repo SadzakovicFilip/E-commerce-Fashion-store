@@ -1,5 +1,5 @@
 import React from "react";
-import Navigation from "../../components/navigartion/Navigation.component";
+import Navigation from "../../components/navigation/Navigation.component";
 import { Outlet } from "react-router-dom";
 
 const NavigationRoute = () => {

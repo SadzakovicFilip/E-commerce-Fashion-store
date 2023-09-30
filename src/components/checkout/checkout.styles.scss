@@ -3,14 +3,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    
     .headerItems{
         width: 90%;
-
+        .individual-title{
+            width: 150px;
+            display: flex;
+            justify-content: center;
+        }
  
         .header-tags{
-            display: grid;
-grid-template-columns: repeat(5,1fr);
+            display: flex;
+            justify-content: space-between;
+            
         }
 
     }
@@ -20,25 +25,26 @@ grid-template-columns: repeat(5,1fr);
         flex-direction: column;
         .item{
             display: flex;
-            .singleItem{
-                width: 100%;
-                display: grid;
-                grid-template-columns: repeat(5,1fr);
-                align-items: center;
-            }
+            justify-content: center;
             button{
                 background-color: transparent;
                 border: none; 
                 cursor: pointer;
+                width: 150px;
             }
          
 
         }
     }
     .total-payment{
-
+        width: 900px;
+        display: flex;
+        justify-content: right;
+        padding-right: 50px;
     }
     .footer{
-
+        display: flex;
+        align-items: flex-end;
+        color: red
     }
 }

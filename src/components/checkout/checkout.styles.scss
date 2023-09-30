@@ -1,0 +1,44 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .headerItems{
+        width: 90%;
+
+ 
+        .header-tags{
+            display: grid;
+grid-template-columns: repeat(5,1fr);
+        }
+
+    }
+    .item-container{
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        .item{
+            display: flex;
+            .singleItem{
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(5,1fr);
+                align-items: center;
+            }
+            button{
+                background-color: transparent;
+                border: none; 
+                cursor: pointer;
+            }
+         
+
+        }
+    }
+    .total-payment{
+
+    }
+    .footer{
+
+    }
+}

@@ -21,11 +21,13 @@ export const CartContext = createContext({
   cartItems: [],
   addItemToCart: () => {},
   cartCount: 0,
+  cartTotal: 0,
 });
 const CartProvider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [cartCount, setCartCount] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
     const newCartCount = cartItems.reduce(
@@ -33,6 +35,11 @@ const CartProvider = ({ children }) => {
       0
     );
     setCartCount(newCartCount);
+
+    const newCartTotal = cartItems.reduce((total, cartItem) => {
+      return total + cartItem.quantity * cartItem.price;
+    }, 0);
+    setCartTotal(newCartTotal);
   }, [cartItems]);
 
   const addItemToCart = (productToAdd) => {
@@ -40,6 +47,8 @@ const CartProvider = ({ children }) => {
   };
 
   const contextValue = {
+    cartTotal,
+    setCartItems,
     cartCount,
     addItemToCart,
     cartItems,

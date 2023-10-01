@@ -3,54 +3,36 @@ import { CartContext } from "../../contexts/cart.context";
 import "./checkout-item.styles.scss";
 
 const CheckoutItem = ({ item }) => {
-  const { cartItems, setCartItems } = useContext(CartContext);
+  const { name, imageUrl, price, quantity } = item;
+  const {
+    removeCheckoutItem,
+    increaseCheckoutItemQuantity,
+    decreaseCheckoutItemQuantity,
+  } = useContext(CartContext);
 
-  const handleRemove = (item) => {
-    const filteredItems = cartItems.filter(
-      (products) => products.id !== item.id
-    );
-    setCartItems(filteredItems);
-  };
-
-  const handleIncrease = (item) => {
-    const Increased = cartItems.map((product) => {
-      return product === item
-        ? { ...product, quantity: (product.quantity += 1) }
-        : product;
-    });
-    setCartItems(Increased);
-  };
-
-  const handleDecrease = (item) => {
-    if (item.quantity === 1) {
-      return cartItems;
-    }
-    const Decreased = cartItems.map((product) => {
-      return product === item
-        ? { ...product, quantity: (product.quantity -= 1) }
-        : product;
-    });
-    setCartItems(Decreased);
-  };
+  const handleRemove = () => removeCheckoutItem(item);
+  const handleIncrease = () => increaseCheckoutItemQuantity(item);
+  const handleDecrease = () => decreaseCheckoutItemQuantity(item);
 
   return (
-    <div>
-      <div className="item">
-        <div className="singleItem">
-          <div className="img">
-            <img src={item.imageUrl} alt={`${item.name}`} />
-          </div>
-          <span>{item.name}</span>
-          <span className="quantity-span">
-            <button onClick={() => handleDecrease(item)}>{`<`}</button>
-            {item.quantity}
-            <button onClick={() => handleIncrease(item)}>{`>`}</button>
-          </span>
-          <span>${item.price}</span>
-          <button onClick={() => handleRemove(item)}>X</button>
-        </div>
+    <div className="checkout-item-container">
+      <div className="image-container">
+        <img src={imageUrl} alt={`${name}`} />
       </div>
-      <hr />
+      <span className="name">{name}</span>
+      <span className="quantity">
+        <div className="arrow" onClick={handleDecrease}>
+          &#10094;
+        </div>
+        <span className="value">{quantity}</span>
+        <div className="arrow" onClick={handleIncrease}>
+          &#10095;
+        </div>
+      </span>
+      <span className="price">${price}</span>
+      <div className="remove-button" onClick={handleRemove}>
+        &#10005;
+      </div>
     </div>
   );
 };

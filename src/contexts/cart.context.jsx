@@ -35,7 +35,9 @@ const CartProvider = ({ children }) => {
       0
     );
     setCartCount(newCartCount);
+  }, [cartItems]);
 
+  useEffect(() => {
     const newCartTotal = cartItems.reduce((total, cartItem) => {
       return total + cartItem.quantity * cartItem.price;
     }, 0);
@@ -46,7 +48,38 @@ const CartProvider = ({ children }) => {
     setCartItems(addCartItem(cartItems, productToAdd));
   };
 
+  const removeCheckoutItem = (item) => {
+    const filteredItems = cartItems.filter(
+      (products) => products.id !== item.id
+    );
+    setCartItems(filteredItems);
+  };
+
+  const increaseCheckoutItemQuantity = (item) => {
+    const Increased = cartItems.map((product) => {
+      return product === item
+        ? { ...product, quantity: (product.quantity += 1) }
+        : product;
+    });
+    setCartItems(Increased);
+  };
+
+  const decreaseCheckoutItemQuantity = (item) => {
+    if (item.quantity === 1) {
+      return cartItems;
+    }
+    const Decreased = cartItems.map((product) => {
+      return product === item
+        ? { ...product, quantity: (product.quantity -= 1) }
+        : product;
+    });
+    setCartItems(Decreased);
+  };
+
   const contextValue = {
+    decreaseCheckoutItemQuantity,
+    increaseCheckoutItemQuantity,
+    removeCheckoutItem,
     cartTotal,
     setCartItems,
     cartCount,

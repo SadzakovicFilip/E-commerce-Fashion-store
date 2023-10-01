@@ -3,6 +3,19 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    .img{
+        display: flex;
+        justify-content : center;
+        width: 150px
+    }
+    img{
+        width: 120px;
+        height: 150px;
+    }
+    .quantity-span{
+        display: flex;
+        justify-content: space-evenly; 
+    }
   span{
     width: 150px;
     display: flex;

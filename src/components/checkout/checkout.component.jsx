@@ -6,6 +6,7 @@ import CheckoutItem from "../checkout-item/checkout-item.component";
 const Checkout = () => {
   const { cartItems, cartTotal } = useContext(CartContext);
   const header = [`product`, `description`, `quantity`, `price`, `Remove`];
+
   return (
     <div className="container">
       <div className="headerItems">

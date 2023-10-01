@@ -5,7 +5,7 @@ import "./checkout-item.styles.scss";
 const CheckoutItem = ({ item }) => {
   const { cartItems, setCartItems } = useContext(CartContext);
 
-  const handleClick = (item) => {
+  const handleRemove = (item) => {
     const filteredItems = cartItems.filter(
       (products) => products.id !== item.id
     );
@@ -32,32 +32,22 @@ const CheckoutItem = ({ item }) => {
     });
     setCartItems(Decreased);
   };
+
   return (
     <div>
       <div className="item">
         <div className="singleItem">
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              width: "150px",
-            }}
-          >
-            <img
-              src={item.imageUrl}
-              alt={`${item.name}`}
-              width={"120px"}
-              height={`150px`}
-            />
+          <div className="img">
+            <img src={item.imageUrl} alt={`${item.name}`} />
           </div>
           <span>{item.name}</span>
-          <span>
-            <button onClick={() => handleDecrease(item)}>{`<`}</button>{" "}
-            {item.quantity}{" "}
+          <span className="quantity-span">
+            <button onClick={() => handleDecrease(item)}>{`<`}</button>
+            {item.quantity}
             <button onClick={() => handleIncrease(item)}>{`>`}</button>
           </span>
           <span>${item.price}</span>
-          <button onClick={() => handleClick(item)}>X</button>
+          <button onClick={() => handleRemove(item)}>X</button>
         </div>
       </div>
       <hr />

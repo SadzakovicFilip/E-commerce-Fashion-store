@@ -2,19 +2,20 @@ import React, { createContext, useEffect, useState } from "react";
 import SHOP_DATA from "../shop-data";
 import { getCategoriesAndDocuments } from "../utils/firebase/firebase.utils";
 
-export const ProductsContext = createContext({
-  setProdutcts: () => {},
-  products: [],
+export const CategoriesContext = createContext({
+  setCategoriesMap: () => {},
+  categoriesMap: {},
 });
 
-const ProductProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
-  const contextValue = { products, setProducts };
+const CategoriesProvider = ({ children }) => {
+  const [categoriesMap, setCategoriesMap] = useState({});
+  const contextValue = { categoriesMap, setCategoriesMap };
 
   useEffect(() => {
     const getCategoriesMap = async () => {
       const categoryMap = await getCategoriesAndDocuments();
       console.log(categoryMap);
+      setCategoriesMap(categoryMap);
     };
     getCategoriesMap();
   }, []);
@@ -25,10 +26,10 @@ const ProductProvider = ({ children }) => {
   // i stored it once, it was just to show how to store documents from frontend to the backend
 
   return (
-    <ProductsContext.Provider value={contextValue}>
+    <CategoriesContext.Provider value={contextValue}>
       {children}
-    </ProductsContext.Provider>
+    </CategoriesContext.Provider>
   );
 };
 
-export default ProductProvider;
+export default CategoriesProvider;

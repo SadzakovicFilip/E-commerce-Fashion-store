@@ -1,10 +1,10 @@
-import CategoryMenu from "../../components/category-menu/category-menu.component";
+import Directory from "../../components/directory/directory.component";
 import React from "react";
 
 const HomeRoute = () => {
   return (
     <div>
-      <CategoryMenu />
+      <Directory />
     </div>
   );
 };

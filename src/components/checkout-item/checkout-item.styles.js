@@ -1,14 +1,19 @@
 import styled from "styled-components";
 import { xl, m, s } from "../../resonsivnes/responsivnes";
-export const Name = styled.span``;
+export const Name = styled.span`
+  margin-left: 5px;
+`;
 export const Price = styled.span``;
 export const Quantity = styled.span`
   display: flex;
 `;
 
 export const ImageContainer = styled.div`
+  display: flex;
   width: 23%;
   padding-right: 15px;
+  padding: 1.5px;
+  margin-left: -3px;
 `;
 
 export const CheckoutItemContainer = styled.div`
@@ -57,7 +62,7 @@ export const Value = styled.span`
     margin: 0 5px;
   }
   ${s} {
-    margin: 0 2px;
+    margin: 0 5px;
   }
 `;
 export const RemoveButton = styled.div`

@@ -53,7 +53,17 @@ export const HeaderBlock = styled.div`
 export const Total = styled.span`
   margin-top: 30px;
   margin-left: auto;
-  font-size: 36px;
+  ${xl} {
+    font-size: 36px;
+  }
+  margin-left: auto;
+  ${m} {
+    font-size: 32px;
+  }
+  margin-left: auto;
+  ${s} {
+    font-size: 28px;
+  }
 `;
 
 export const Footer = styled.div`

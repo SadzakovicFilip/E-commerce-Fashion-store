@@ -6,7 +6,7 @@ import {
   auth,
   signInWithGooglePopup,
   createUserDocumentFromAuth,
-  // signInWithGoogleRedirect,
+  signInWithGoogleRedirect,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 
@@ -19,6 +19,9 @@ import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import {
   ButtonsContainer,
   ErrorMessage,
+  GoogleButtons,
+  GooglePopUp,
+  GoogleRedirect,
   SignInContainer,
 } from "./sign-in-form.styles";
 
@@ -102,18 +105,25 @@ const SignInForm = () => {
           <Button type="submit" buttonType={BUTTON_TYPE_CLASSES.base}>
             Sign In
           </Button>
-          <Button
-            type="button"
-            buttonType={BUTTON_TYPE_CLASSES.google}
-            onClick={signInWithGoogle}
-          >
-            Google Sign In
-          </Button>
+          <GooglePopUp>
+            <Button
+              type="button"
+              buttonType={BUTTON_TYPE_CLASSES.google}
+              onClick={signInWithGoogle}
+            >
+              Google Sign In
+            </Button>
+          </GooglePopUp>
+          <GoogleRedirect>
+            <Button
+              buttonType={BUTTON_TYPE_CLASSES.google}
+              onClick={signInWithGoogleRedirect}
+            >
+              Google Sign In
+            </Button>
+          </GoogleRedirect>
         </ButtonsContainer>
       </form>
-      {/* <Button buttonType="google" onClick={signInWithGoogleRedirect}>
-        Sign in with Google Redirect
-      </Button> */}
     </SignInContainer>
   );
 };

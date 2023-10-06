@@ -22,6 +22,7 @@ import {
   GoogleButtons,
   GooglePopUp,
   GoogleRedirect,
+  SignInButton,
   SignInContainer,
 } from "./sign-in-form.styles";
 
@@ -64,18 +65,8 @@ const SignInForm = () => {
       await signInAuthUserWithEmailAndPassword(email, password);
       resetFormFields();
     } catch (error) {
-      let err = error.code.slice(5, error.code.length);
-      let newError = "";
-      for (let i = 0; i < err.length; i++) {
-        if (i === 0) {
-          newError += err[i].toUpperCase();
-        } else if (err[i] === "-") {
-          newError += " ";
-        } else {
-          newError += err[i];
-        }
-      }
-      setError(newError);
+      setError(error.code.slice(5, error.code.length));
+      resetFormFields();
     }
   };
 
@@ -100,11 +91,13 @@ const SignInForm = () => {
           requierd="true"
           onChange={handleChange}
         />
-        {error && <ErrorMessage>{error}</ErrorMessage>}
+        {error && <ErrorMessage>- {error} -</ErrorMessage>}
         <ButtonsContainer>
-          <Button type="submit" buttonType={BUTTON_TYPE_CLASSES.base}>
-            Sign In
-          </Button>
+          <SignInButton>
+            <Button type="submit" buttonType={BUTTON_TYPE_CLASSES.base}>
+              Sign In
+            </Button>
+          </SignInButton>
           <GooglePopUp>
             <Button
               type="button"

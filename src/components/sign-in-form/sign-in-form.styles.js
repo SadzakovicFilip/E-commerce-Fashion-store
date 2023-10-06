@@ -5,11 +5,18 @@ export const ButtonsContainer = styled.div`
   justify-content: space-between;
   width: 100%;
 `;
-export const ErrorMessage = styled.h2`
+export const ErrorMessage = styled.div`
+  display: flex;
+  margin-left: 14%;
+  padding-bottom: 7%;
   color: red;
+  text-transform: uppercase;
 `;
 export const GooglePopUp = styled.div`
   min-width: 57%;
+  button {
+    width: 90%;
+  }
   ${m} {
     display: none;
   }
@@ -18,8 +25,11 @@ export const GooglePopUp = styled.div`
   }
 `;
 export const GoogleRedirect = styled.div`
-  min-width: 40%;
-
+  min-width: 60%;
+  button {
+    max-width: 70%;
+    padding: 0 10px;
+  }
   ${xl} {
     display: none;
   }
@@ -39,5 +49,12 @@ export const SignInContainer = styled.div`
 
   h2 {
     margin: 10px 0;
+  }
+`;
+export const SignInButton = styled.div`
+  min-width: 40%;
+  button {
+    min-width: 57%;
+    max-width: 80%;
   }
 `;

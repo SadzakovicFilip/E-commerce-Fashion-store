@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { m, s, xl } from "../../resonsivnes/responsivnes";
 
 export const BackgroundImage = styled.div`
   width: 100%;
@@ -12,8 +13,17 @@ export const BackgroundImage = styled.div`
 `;
 
 export const Body = styled.div`
-  height: 90px;
+  height: 15%;
   padding: 0 25px;
+  ${s} {
+    width: 23%;
+  }
+  ${m} {
+    padding: 0 15px;
+  }
+  ${s} {
+    padding: 0 7px;
+  }
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,8 +35,16 @@ export const Body = styled.div`
 
   h2 {
     font-weight: bold;
-    margin: 0 6px 0;
-    font-size: 22px;
+    margin: 0;
+    ${xl} {
+      font-size: 22px;
+    }
+    ${m} {
+      font-size: 18px;
+    }
+    ${s} {
+      font-size: 13px;
+    }
     color: #4a4a4a;
     text-transform: uppercase;
   }
@@ -34,6 +52,14 @@ export const Body = styled.div`
   p {
     font-weight: lighter;
     font-size: 16px;
+    min-width: 50px;
+    text-align: center;
+    ${m} {
+      font-size: 14px;
+    }
+    ${s} {
+      font-size: 11px;
+    }
   }
 `;
 

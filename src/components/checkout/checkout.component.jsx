@@ -17,8 +17,8 @@ const Checkout = () => {
       <CheckoutHeader>
         {header.map((title, key) => {
           return (
-            <HeaderBlock>
-              <span key={key}>{title}</span>
+            <HeaderBlock key={key}>
+              <span>{title}</span>
             </HeaderBlock>
           );
         })}

@@ -1,12 +1,20 @@
 import styled from "styled-components";
+import { m, s, xl } from "../../resonsivnes/responsivnes";
 
 export const BaseButton = styled.button`
-  min-width: 165px;
   width: auto;
   height: 50px;
   letter-spacing: 0.5px;
-  line-height: 50px;
-  padding: 0 35px 0 35px;
+  ${xl} {
+    padding: 0 8%;
+  }
+  ${m} {
+    padding: 0 10%;
+  }
+  ${s} {
+    padding: 0 2%;
+  }
+
   font-size: 12.7px;
   background-color: black;
   color: white;
@@ -17,6 +25,7 @@ export const BaseButton = styled.button`
   cursor: pointer;
   display: flex;
   justify-content: center;
+  align-items: center;
   &:hover {
     background-color: white;
     color: black;

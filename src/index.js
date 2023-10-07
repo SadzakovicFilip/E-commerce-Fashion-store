@@ -7,17 +7,20 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import CategoriesProvider from "./contexts/categories.context";
 import CartProvider from "./contexts/cart.context";
+import DrawerProvider from "./contexts/drawer.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <CategoriesProvider>
-          <CartProvider>
-            <App />
-          </CartProvider>
-        </CategoriesProvider>
+        <DrawerProvider>
+          <CategoriesProvider>
+            <CartProvider>
+              <App />
+            </CartProvider>
+          </CategoriesProvider>
+        </DrawerProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>

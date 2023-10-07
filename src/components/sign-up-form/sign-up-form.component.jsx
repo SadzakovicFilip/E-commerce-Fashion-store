@@ -1,7 +1,6 @@
 import React from "react";
 
-import { useState, useContext } from "react";
-import { UserContext } from "../../contexts/user.context";
+import { useState } from "react";
 
 import FormInput from "../form-input/form-input.component";
 

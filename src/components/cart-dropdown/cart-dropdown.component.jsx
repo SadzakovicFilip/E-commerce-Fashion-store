@@ -9,23 +9,24 @@ import {
   EmptyMessage,
   CartItemsContainer,
 } from "./cart-dropdown.styles";
+import { DrawerContext } from "../../contexts/drawer.context.jsx";
 
 const CartDropdown = () => {
-  const { setIsCartOpen, setIsDrawerOpen } = useContext(CartContext);
-  const { cartItems } = useContext(CartContext);
+  const { cartState, closeCartDropdown } = useContext(CartContext);
+  const { setIsDrawerOpen } = useContext(DrawerContext);
   const navigate = useNavigate();
 
   const handleClick = () => {
     navigate("/checkout");
-    setIsCartOpen(false);
+    closeCartDropdown();
     setIsDrawerOpen(false);
   };
 
   return (
-    <CartDropdownContainer onMouseLeave={() => setIsCartOpen(false)}>
+    <CartDropdownContainer onMouseLeave={closeCartDropdown}>
       <CartItemsContainer>
-        {cartItems.length ? (
-          cartItems.map((cartItem, key) => (
+        {cartState.cartItems.length ? (
+          cartState.cartItems.map((cartItem, key) => (
             <CartItem key={key} cartItem={cartItem} />
           ))
         ) : (

@@ -9,7 +9,7 @@ import {
   Footer,
 } from "./checkout.styles";
 const Checkout = () => {
-  const { cartItems, cartTotal } = useContext(CartContext);
+  const { cartState } = useContext(CartContext);
   const header = [`product`, `description`, `quantity`, `price`, `remove`];
 
   return (
@@ -23,13 +23,13 @@ const Checkout = () => {
           );
         })}
       </CheckoutHeader>
-      {cartItems.map((item, key) => (
+      {cartState.cartItems.map((item, key) => (
         <CheckoutItem key={key} item={item} />
       ))}
-      {cartTotal === 0 ? (
+      {cartState.cartTotal === 0 ? (
         <Total>Your cart is empty</Total>
       ) : (
-        <Total>TOTAL : ${cartTotal}</Total>
+        <Total>TOTAL : ${cartState.cartTotal}</Total>
       )}
       <Footer>*Please use the following test credit card for payments*</Footer>
     </CheckoutContainer>

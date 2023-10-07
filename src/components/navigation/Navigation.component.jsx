@@ -14,19 +14,20 @@ import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 import { CartContext } from "../../contexts/cart.context";
+import { DrawerContext } from "../../contexts/drawer.context";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
-  const { setIsCartOpen, isCartOpen, isDrawerOpen, setIsDrawerOpen } =
-    useContext(CartContext);
+  const { isDrawerOpen, setIsDrawerOpen } = useContext(DrawerContext);
+  const { closeCartDropdown, cartState } = useContext(CartContext);
 
   const toggleDrawer = () => {
     setIsDrawerOpen((prev) => !prev);
-    setIsCartOpen(false);
+    closeCartDropdown();
   };
   const closeDrawers = () => {
     setIsDrawerOpen(false);
-    setIsCartOpen(false);
+    closeCartDropdown();
   };
   const signOutHandler = () => {
     signOutUser();
@@ -57,7 +58,7 @@ const Navigation = () => {
           </ButtonContainer>
           <CartIcon />
         </ButtonAndCartContainer>
-        {isCartOpen && <CartDropdown />}
+        {cartState.isCartOpen && <CartDropdown />}
         {isDrawerOpen && (
           <DrawerContainer>
             <NavLink to="/shop" onClick={closeDrawers}>

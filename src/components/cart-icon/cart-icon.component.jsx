@@ -7,15 +7,12 @@ import {
   CartIconContainer,
 } from "./cart-icon.styles.js";
 const CartIcon = () => {
-  const { setIsCartOpen, cartCount } = useContext(CartContext);
-  const handleClick = () => {
-    setIsCartOpen((prev) => !prev);
-  };
+  const { toggleCartDropdown, cartState } = useContext(CartContext);
 
   return (
-    <CartIconContainer onClick={handleClick}>
+    <CartIconContainer onClick={toggleCartDropdown}>
       <ShoppingIcon />
-      <ItemCount>{cartCount}</ItemCount>
+      <ItemCount>{cartState.cartCount}</ItemCount>
     </CartIconContainer>
   );
 };

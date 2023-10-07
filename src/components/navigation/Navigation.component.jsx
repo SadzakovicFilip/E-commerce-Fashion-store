@@ -14,29 +14,41 @@ import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 import { CartContext } from "../../contexts/cart.context";
-import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
-  const { isCartOpen, isDrawerOpen, setIsDrawerOpen } = useContext(CartContext);
+  const { setIsCartOpen, isCartOpen, isDrawerOpen, setIsDrawerOpen } =
+    useContext(CartContext);
 
   const toggleDrawer = () => {
     setIsDrawerOpen((prev) => !prev);
+    setIsCartOpen(false);
   };
-  const closeDrawer = () => setIsDrawerOpen(false);
-  const signOutHandler = () => (signOutUser(), toggleDrawer());
+  const closeDrawers = () => {
+    setIsDrawerOpen(false);
+    setIsCartOpen(false);
+  };
+  const signOutHandler = () => {
+    signOutUser();
+    closeDrawers();
+  };
   return (
     <>
       <NavigationContainer>
-        <LogoContainer onClick={closeDrawer} to="/">
+        <LogoContainer onClick={closeDrawers} to="/">
           <CrwnLogo />
         </LogoContainer>
         <NavLinks>
-          <NavLink to="/shop">SHOP</NavLink>
+          <NavLink to="/shop" onClick={closeDrawers}>
+            SHOP
+          </NavLink>
+
           {currentUser ? (
             <NavLink onClick={signOutUser}>SIGN OUT</NavLink>
           ) : (
-            <NavLink to="/auth">SIGN IN</NavLink>
+            <NavLink to="/auth" onClick={closeDrawers}>
+              SIGN IN
+            </NavLink>
           )}
         </NavLinks>
         <ButtonAndCartContainer>
@@ -48,13 +60,13 @@ const Navigation = () => {
         {isCartOpen && <CartDropdown />}
         {isDrawerOpen && (
           <DrawerContainer>
-            <NavLink to="/shop" onClick={toggleDrawer}>
+            <NavLink to="/shop" onClick={closeDrawers}>
               SHOP
             </NavLink>
             {currentUser ? (
               <NavLink onClick={signOutHandler}>SIGN OUT</NavLink>
             ) : (
-              <NavLink to="/auth" onClick={toggleDrawer}>
+              <NavLink to="/auth" onClick={closeDrawers}>
                 SIGN IN
               </NavLink>
             )}

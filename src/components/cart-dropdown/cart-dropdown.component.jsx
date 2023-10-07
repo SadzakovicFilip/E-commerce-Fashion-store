@@ -22,7 +22,7 @@ const CartDropdown = () => {
   };
 
   return (
-    <CartDropdownContainer>
+    <CartDropdownContainer onMouseLeave={() => setIsCartOpen(false)}>
       <CartItemsContainer>
         {cartItems.length ? (
           cartItems.map((cartItem, key) => (

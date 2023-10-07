@@ -64,7 +64,9 @@ const CartProvider = ({ children }) => {
     });
     setCartItems(Increased);
   };
-
+  const closeCartDropdown = () => {
+    setIsCartOpen(false);
+  };
   const decreaseCheckoutItemQuantity = (item) => {
     if (item.quantity === 1) {
       return cartItems;
@@ -78,6 +80,7 @@ const CartProvider = ({ children }) => {
   };
 
   const contextValue = {
+    closeCartDropdown,
     isDrawerOpen,
     setIsDrawerOpen,
     decreaseCheckoutItemQuantity,

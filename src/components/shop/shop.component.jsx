@@ -1,11 +1,13 @@
-import React, { Fragment, useContext } from "react";
-import { CategoriesContext } from "../../contexts/categories.context";
+import React, { Fragment } from "react";
+
 import ProductCard from "../product-card/product-card.component";
 import { Link } from "react-router-dom";
 import { ProductsContainer } from "./shop.styles";
+import { useSelector } from "react-redux";
+import { selectCategoriesMap } from "../../store/categories/categories.selector";
 
 const ShopComponent = () => {
-  const { categoriesMap } = useContext(CategoriesContext);
+  const categoriesMap = useSelector(selectCategoriesMap);
   const arrayOfTitles = Object.keys(categoriesMap);
 
   return (

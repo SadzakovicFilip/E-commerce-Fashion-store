@@ -16,15 +16,15 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <UserProvider>
-          <DrawerProvider>
-            <CategoriesProvider>
-              <CartProvider>
-                <App />
-              </CartProvider>
-            </CategoriesProvider>
-          </DrawerProvider>
-        </UserProvider>
+        {/* <UserProvider> */}
+        <DrawerProvider>
+          {/* <CategoriesProvider> */}
+          <CartProvider>
+            <App />
+          </CartProvider>
+          {/* </CategoriesProvider> */}
+        </DrawerProvider>
+        {/* </UserProvider> */}
       </BrowserRouter>
     </Provider>
   </React.StrictMode>

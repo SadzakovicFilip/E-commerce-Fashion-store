@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { UserContext } from "../../contexts/user.context";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 import {
   NavigationContainer,
@@ -15,9 +15,10 @@ import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 import { CartContext } from "../../contexts/cart.context";
 import { DrawerContext } from "../../contexts/drawer.context";
+import { selectCurrentUser } from "../../store/user/user.selector";
 
 const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
   const { isDrawerOpen, setIsDrawerOpen } = useContext(DrawerContext);
   const { closeCartDropdown, cartState } = useContext(CartContext);
 

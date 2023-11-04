@@ -13,22 +13,26 @@ import {
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
-import { CartContext } from "../../contexts/cart.context";
 import { DrawerContext } from "../../contexts/drawer.context";
 import { selectCurrentUser } from "../../store/user/user.selector";
+import { closeCartDropdown } from "../../store/cart/cart.action";
+import { useDispatch } from "react-redux";
+import { selectIsCartOpen } from "../../store/cart/cart.selector";
 
 const Navigation = () => {
+  const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
+  const isCartOpen = useSelector(selectIsCartOpen);
+
   const { isDrawerOpen, setIsDrawerOpen } = useContext(DrawerContext);
-  const { closeCartDropdown, cartState } = useContext(CartContext);
 
   const toggleDrawer = () => {
     setIsDrawerOpen((prev) => !prev);
-    closeCartDropdown();
+    dispatch(closeCartDropdown());
   };
   const closeDrawers = () => {
     setIsDrawerOpen(false);
-    closeCartDropdown();
+    dispatch(closeCartDropdown());
   };
   const signOutHandler = () => {
     signOutUser();
@@ -59,7 +63,7 @@ const Navigation = () => {
           </ButtonContainer>
           <CartIcon />
         </ButtonAndCartContainer>
-        {cartState.isCartOpen && <CartDropdown />}
+        {isCartOpen && <CartDropdown />}
         {isDrawerOpen && (
           <DrawerContainer>
             <NavLink to="/shop" onClick={closeDrawers}>

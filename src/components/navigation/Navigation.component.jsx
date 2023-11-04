@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 import {
@@ -13,25 +13,25 @@ import {
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
-import { DrawerContext } from "../../contexts/drawer.context";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { closeCartDropdown } from "../../store/cart/cart.action";
 import { useDispatch } from "react-redux";
 import { selectIsCartOpen } from "../../store/cart/cart.selector";
+import { selectIsDrawerOpen } from "../../store/drawer/drawer.selector";
+import { setIsDrawerOpen } from "../../store/drawer/drawer.action";
 
 const Navigation = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
-
-  const { isDrawerOpen, setIsDrawerOpen } = useContext(DrawerContext);
+  const isDrawerOpen = useSelector(selectIsDrawerOpen);
 
   const toggleDrawer = () => {
-    setIsDrawerOpen((prev) => !prev);
+    dispatch(setIsDrawerOpen(!isDrawerOpen));
     dispatch(closeCartDropdown());
   };
   const closeDrawers = () => {
-    setIsDrawerOpen(false);
+    dispatch(setIsDrawerOpen(false));
     dispatch(closeCartDropdown());
   };
   const signOutHandler = () => {

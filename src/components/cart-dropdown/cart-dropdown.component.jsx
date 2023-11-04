@@ -8,23 +8,22 @@ import {
   EmptyMessage,
   CartItemsContainer,
 } from "./cart-dropdown.styles";
-import { DrawerContext } from "../../contexts/drawer.context.jsx";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { closeCartDropdown } from "../../store/cart/cart.action.js";
 import { useDispatch } from "react-redux";
 import { selectCartItems } from "../../store/cart/cart.selector.js";
+import { setIsDrawerOpen } from "../../store/drawer/drawer.action.js";
 
 const CartDropdown = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
 
-  const { setIsDrawerOpen } = useContext(DrawerContext);
   const navigate = useNavigate();
 
   const handleClick = () => {
     navigate("/checkout");
     dispatch(closeCartDropdown());
-    setIsDrawerOpen(false);
+    dispatch(setIsDrawerOpen(false));
   };
   const handleMouseLeave = () => dispatch(closeCartDropdown());
 

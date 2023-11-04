@@ -7,7 +7,6 @@ import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import DrawerProvider from "./contexts/drawer.context";
 import { store } from "./store/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -15,13 +14,13 @@ root.render(
     <Provider store={store}>
       <BrowserRouter>
         {/* <UserProvider> */}
-        <DrawerProvider>
-          {/* <CategoriesProvider> */}
-          {/* <CartProvider> */}
-          <App />
-          {/* </CartProvider> */}
-          {/* </CategoriesProvider> */}
-        </DrawerProvider>
+        {/* <DrawerProvider> */}
+        {/* <CategoriesProvider> */}
+        {/* <CartProvider> */}
+        <App />
+        {/* </CartProvider> */}
+        {/* </CategoriesProvider> */}
+        {/* </DrawerProvider> */}
         {/* </UserProvider> */}
       </BrowserRouter>
     </Provider>

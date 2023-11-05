@@ -11,11 +11,9 @@ import CategoryRoute from "./routes/category/category.routes";
 
 import {
   createUserDocumentFromAuth,
-  getCategoriesAndDocuments,
   onAuthStateChangeListener,
 } from "./utils/firebase/firebase.utils";
 import { setCurrentUser } from "./store/user/user.action";
-import { setCategories } from "./store/categories/categories.action";
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -26,14 +24,6 @@ const App = () => {
       dispatch(setCurrentUser(user));
     });
     return unsubscribe;
-  }, []);
-
-  useEffect(() => {
-    const getCategoriesMap = async () => {
-      const categoriesArray = await getCategoriesAndDocuments();
-      dispatch(setCategories(categoriesArray));
-    };
-    getCategoriesMap();
   }, []);
 
   return (

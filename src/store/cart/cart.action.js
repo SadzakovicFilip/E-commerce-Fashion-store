@@ -49,7 +49,7 @@ export const increaseCartItemQuantity = (cartItems, item) => {
 
 export const decreaseCartItemQuantity = (cartItems, item) => {
   if (item.quantity === 1) {
-    return cartItems;
+    return removeItemFromCart(cartItems, item);
   }
   const Decreased = cartItems.map((product) => {
     return product === item

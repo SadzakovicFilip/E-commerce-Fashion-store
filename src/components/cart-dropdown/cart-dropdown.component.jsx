@@ -9,10 +9,10 @@ import {
   CartItemsContainer,
 } from "./cart-dropdown.styles";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import { closeCartDropdown } from "../../store/cart/cart.action.js";
+import { closeCartDropdown } from "../../store/cart/cart.reducer.js";
 import { useDispatch } from "react-redux";
 import { selectCartItems } from "../../store/cart/cart.selector.js";
-import { setIsDrawerOpen } from "../../store/drawer/drawer.action.js";
+import { setIsDrawerOpen } from "../../store/drawer/drawer.reducer.js";
 
 const CartDropdown = () => {
   const dispatch = useDispatch();

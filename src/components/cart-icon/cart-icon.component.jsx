@@ -5,7 +5,7 @@ import {
   ItemCount,
   CartIconContainer,
 } from "./cart-icon.styles.js";
-import { toggleCartDropdown } from "../../store/cart/cart.action";
+import { toggleCartDropdown } from "../../store/cart/cart.reducer.js";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
 import {

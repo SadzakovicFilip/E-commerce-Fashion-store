@@ -13,14 +13,20 @@ import {
   createUserDocumentFromAuth,
   onAuthStateChangeListener,
 } from "./utils/firebase/firebase.utils";
-import { setCurrentUser } from "./store/user/user.action";
+import { setCurrentUser } from "./store/user/user.reducer";
+import { fetchCategoriesAsync } from "./store/categories/categories.action";
 const App = () => {
+  useEffect(() => {
+    dispatch(fetchCategoriesAsync());
+  }, []);
+
   const dispatch = useDispatch();
   useEffect(() => {
     const unsubscribe = onAuthStateChangeListener((user) => {
       if (user) {
         createUserDocumentFromAuth(user);
       }
+      console.log(setCurrentUser(user));
       dispatch(setCurrentUser(user));
     });
     return unsubscribe;

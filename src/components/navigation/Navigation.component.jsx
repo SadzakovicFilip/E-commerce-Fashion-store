@@ -14,18 +14,18 @@ import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 import { selectCurrentUser } from "../../store/user/user.selector";
-import { closeCartDropdown } from "../../store/cart/cart.action";
+import { closeCartDropdown } from "../../store/cart/cart.reducer";
 import { useDispatch } from "react-redux";
 import { selectIsCartOpen } from "../../store/cart/cart.selector";
 import { selectIsDrawerOpen } from "../../store/drawer/drawer.selector";
-import { setIsDrawerOpen } from "../../store/drawer/drawer.action";
+import { setIsDrawerOpen } from "../../store/drawer/drawer.reducer";
 
 const Navigation = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
   const isDrawerOpen = useSelector(selectIsDrawerOpen);
-
+  console.log(isDrawerOpen);
   const toggleDrawer = () => {
     dispatch(setIsDrawerOpen(!isDrawerOpen));
     dispatch(closeCartDropdown());

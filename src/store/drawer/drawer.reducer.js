@@ -1,11 +1,14 @@
-import DRAWER_ACTION_TYPE from "./drawer.type";
+import { createSlice } from "@reduxjs/toolkit";
 
-export const drawerReducer = (state = false, action = {}) => {
-  const { type, payload } = action;
-  switch (type) {
-    case DRAWER_ACTION_TYPE.IS_DRAWER_OPEN:
-      return payload;
-    default:
-      return state;
-  }
-};
+export const drawerSlice = createSlice({
+  name: `drawer`,
+  initialState: false,
+  reducers: {
+    setIsDrawerOpen: (state, action) => {
+      return action.payload;
+    },
+  },
+});
+
+export const { setIsDrawerOpen } = drawerSlice.actions;
+export const drawerReducer = drawerSlice.reducer;

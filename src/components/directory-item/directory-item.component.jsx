@@ -5,7 +5,7 @@ import {
   Body,
 } from "./directory-item.styles";
 
-import { closeCartDropdown } from "../../store/cart/cart.action";
+import { closeCartDropdown } from "../../store/cart/cart.reducer";
 import { useDispatch } from "react-redux";
 
 const DirectoryItem = ({ category }) => {

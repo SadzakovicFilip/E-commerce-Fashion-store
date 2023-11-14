@@ -12,19 +12,19 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
-          {/* <UserProvider> */}
-          {/* <DrawerProvider> */}
-          {/* <CategoriesProvider> */}
-          {/* <CartProvider> */}
-          <App />
-          {/* </CartProvider> */}
-          {/* </CategoriesProvider> */}
-          {/* </DrawerProvider> */}
-          {/* </UserProvider> */}
-        </BrowserRouter>
-      </PersistGate>
+      {/* <PersistGate loading={null} persistor={persistor}> */}
+      <BrowserRouter>
+        {/* <UserProvider> */}
+        {/* <DrawerProvider> */}
+        {/* <CategoriesProvider> */}
+        {/* <CartProvider> */}
+        <App />
+        {/* </CartProvider> */}
+        {/* </CategoriesProvider> */}
+        {/* </DrawerProvider> */}
+        {/* </UserProvider> */}
+      </BrowserRouter>
+      {/* </PersistGate> */}
     </Provider>
   </React.StrictMode>
 );

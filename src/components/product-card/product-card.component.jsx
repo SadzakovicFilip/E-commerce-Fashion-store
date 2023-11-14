@@ -8,7 +8,7 @@ import {
   Price,
   Footer,
 } from "./product-card.styles.js";
-import { addItemToCart } from "../../store/cart/cart.action.js";
+import { addItemToCart } from "../../store/cart/cart.reducer.js";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux/es/hooks/useSelector.js";
 import { selectCartItems } from "../../store/cart/cart.selector.js";
@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const { name, price, imageUrl } = product;
   const cartItems = useSelector(selectCartItems);
-  const addProductToCart = () => dispatch(addItemToCart(cartItems, product));
+  const addProductToCart = () => dispatch(addItemToCart(product));
   return (
     <ProductCartContainer>
       <img src={imageUrl} alt={`${name}`} />

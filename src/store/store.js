@@ -1,7 +1,7 @@
 // import { compose, createStore, applyMiddleware } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
-// import { persistStore, persistReducer } from "redux-persist";
-// import storage from "redux-persist/lib/storage";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 
@@ -12,13 +12,13 @@ const middleWares = [
   thunk,
 ].filter(Boolean);
 
-// const persistConfig = {
-//   key: "root",
-//   storage: storage,
-//   whitelist: ["cart"],
-// };
+const persistConfig = {
+  key: "root",
+  storage: storage,
+  whitelist: ["cart"],
+};
 
-// const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 // const composeEnhancer =
 //   (process.env.NODE_ENV !== "production" &&
 //     window &&
@@ -27,7 +27,7 @@ const middleWares = [
 // const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares));
 
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
@@ -40,4 +40,4 @@ export const store = configureStore({
 //   composedEnhancers
 // );
 
-// export const persistor = persistStore(store);
+export const persistor = persistStore(store);

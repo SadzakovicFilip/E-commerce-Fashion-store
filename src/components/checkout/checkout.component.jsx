@@ -12,6 +12,8 @@ import {
   selectCartItems,
   selectCartTotal,
 } from "../../store/cart/cart.selector";
+import PaymentForm from "../payment-form/payment-form.component";
+
 const Checkout = () => {
   const cartTotal = useSelector(selectCartTotal);
   const cartItems = useSelector(selectCartItems);
@@ -37,6 +39,7 @@ const Checkout = () => {
       ) : (
         <Total>TOTAL : ${cartTotal}</Total>
       )}
+      <PaymentForm />
       <Footer>*Please use the following test credit card for payments*</Footer>
     </CheckoutContainer>
   );

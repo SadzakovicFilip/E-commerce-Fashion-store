@@ -1,0 +1,5 @@
+const DRAWER_ACTION_TYPE = {
+  IS_DRAWER_OPEN: "drawer/IS_DRAWER_OPEN",
+};
+
+export default DRAWER_ACTION_TYPE;

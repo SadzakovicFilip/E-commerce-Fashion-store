@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { CartContext } from "../../contexts/cart.context";
+import React from "react";
 import CheckoutItem from "../checkout-item/checkout-item.component";
 import {
   CheckoutContainer,
@@ -8,8 +7,15 @@ import {
   Total,
   Footer,
 } from "./checkout.styles";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import {
+  selectCartItems,
+  selectCartTotal,
+} from "../../store/cart/cart.selector";
 const Checkout = () => {
-  const { cartState } = useContext(CartContext);
+  const cartTotal = useSelector(selectCartTotal);
+  const cartItems = useSelector(selectCartItems);
+
   const header = [`product`, `description`, `quantity`, `price`, `remove`];
 
   return (
@@ -23,13 +29,13 @@ const Checkout = () => {
           );
         })}
       </CheckoutHeader>
-      {cartState.cartItems.map((item, key) => (
+      {cartItems.map((item, key) => (
         <CheckoutItem key={key} item={item} />
       ))}
-      {cartState.cartTotal === 0 ? (
+      {cartTotal === 0 ? (
         <Total>Your cart is empty</Total>
       ) : (
-        <Total>TOTAL : ${cartState.cartTotal}</Total>
+        <Total>TOTAL : ${cartTotal}</Total>
       )}
       <Footer>*Please use the following test credit card for payments*</Footer>
     </CheckoutContainer>

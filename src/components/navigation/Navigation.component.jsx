@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { UserContext } from "../../contexts/user.context";
+import React from "react";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 import {
   NavigationContainer,
@@ -13,21 +13,26 @@ import {
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
-import { CartContext } from "../../contexts/cart.context";
-import { DrawerContext } from "../../contexts/drawer.context";
+import { selectCurrentUser } from "../../store/user/user.selector";
+import { closeCartDropdown } from "../../store/cart/cart.reducer";
+import { useDispatch } from "react-redux";
+import { selectIsCartOpen } from "../../store/cart/cart.selector";
+import { selectIsDrawerOpen } from "../../store/drawer/drawer.selector";
+import { setIsDrawerOpen } from "../../store/drawer/drawer.reducer";
 
 const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
-  const { isDrawerOpen, setIsDrawerOpen } = useContext(DrawerContext);
-  const { closeCartDropdown, cartState } = useContext(CartContext);
-
+  const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
+  const isCartOpen = useSelector(selectIsCartOpen);
+  const isDrawerOpen = useSelector(selectIsDrawerOpen);
+  console.log(isDrawerOpen);
   const toggleDrawer = () => {
-    setIsDrawerOpen((prev) => !prev);
-    closeCartDropdown();
+    dispatch(setIsDrawerOpen(!isDrawerOpen));
+    dispatch(closeCartDropdown());
   };
   const closeDrawers = () => {
-    setIsDrawerOpen(false);
-    closeCartDropdown();
+    dispatch(setIsDrawerOpen(false));
+    dispatch(closeCartDropdown());
   };
   const signOutHandler = () => {
     signOutUser();
@@ -58,7 +63,7 @@ const Navigation = () => {
           </ButtonContainer>
           <CartIcon />
         </ButtonAndCartContainer>
-        {cartState.isCartOpen && <CartDropdown />}
+        {isCartOpen && <CartDropdown />}
         {isDrawerOpen && (
           <DrawerContainer>
             <NavLink to="/shop" onClick={closeDrawers}>

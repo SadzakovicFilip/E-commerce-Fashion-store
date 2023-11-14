@@ -4,17 +4,20 @@ import {
   DirectoryItemContainer,
   Body,
 } from "./directory-item.styles";
-import { useContext } from "react";
-import { CartContext } from "../../contexts/cart.context";
+
+import { closeCartDropdown } from "../../store/cart/cart.reducer";
+import { useDispatch } from "react-redux";
 
 const DirectoryItem = ({ category }) => {
-  const { closeCartDropdown } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const closeCartDropdownFunc = () => dispatch(closeCartDropdown());
+
   const { imageUrl, title } = category;
   return (
     <DirectoryItemContainer
       as={Link}
       to={`/shop/${title}`}
-      onClick={closeCartDropdown}
+      onClick={closeCartDropdownFunc}
     >
       <BackgroundImage imageUrl={imageUrl} />
       <Body>

@@ -16,12 +16,9 @@ import {
   increaseCartItemQuantity,
   decreaseCartItemQuantity,
 } from "../../store/cart/cart.reducer.js";
-import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
-import { selectCartItems } from "../../store/cart/cart.selector";
 const CheckoutItem = ({ item }) => {
   const dispatch = useDispatch();
-  const cartItems = useSelector(selectCartItems);
 
   const { name, imageUrl, price, quantity } = item;
 

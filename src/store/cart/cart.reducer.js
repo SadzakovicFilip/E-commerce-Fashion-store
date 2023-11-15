@@ -57,10 +57,14 @@ export const cartSlice = createSlice({
     decreaseCartItemQuantity: (state, action) => {
       state.cartItems = decreaseCartItem(state.cartItems, action.payload);
     },
+    clearCart: (state, action) => {
+      state.cartItems = [];
+    },
   },
 });
 
 export const {
+  clearCart,
   closeCartDropdown,
   toggleCartDropdown,
   addItemToCart,

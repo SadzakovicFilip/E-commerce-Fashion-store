@@ -25,7 +25,6 @@ const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
   const isDrawerOpen = useSelector(selectIsDrawerOpen);
-  console.log(isDrawerOpen);
   const toggleDrawer = () => {
     dispatch(setIsDrawerOpen(!isDrawerOpen));
     dispatch(closeCartDropdown());
